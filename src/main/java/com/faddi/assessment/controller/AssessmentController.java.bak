@@ -1,0 +1,48 @@
+package com.faddi.assessment.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.faddi.assessment.model.AssessmentModel;
+import com.faddi.assessment.service.AssessmentService;
+
+@RestController
+public class AssessmentController {
+
+	@Autowired
+	private AssessmentService assessmentService;
+	
+	@RequestMapping(path="/movies" , method=RequestMethod.GET,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	public List<AssessmentModel> getList() {
+		return this.assessmentService.getList();
+	}
+	
+	@RequestMapping(path="/movies/{id}", method=RequestMethod.GET)
+	public AssessmentModel getById(@PathVariable("id") int id) {
+		return this.assessmentService.findById(id);
+	}
+	
+	@RequestMapping(path="/movies", method=RequestMethod.POST)
+	public AssessmentModel insert(@RequestBody AssessmentModel assessmentModel) {
+		return this.assessmentService.insert(assessmentModel);
+	}
+	
+	@RequestMapping(path="/movies/{id}", method=RequestMethod.PATCH)
+	public AssessmentModel update(@RequestBody AssessmentModel assessmentModel, @PathVariable("id") int id) {
+		return this.assessmentService.update(assessmentModel, id);
+	}
+	
+	@RequestMapping(path="/movies/{id}", method=RequestMethod.DELETE)
+	public AssessmentModel delete(@PathVariable("id") int id) {
+		return this.assessmentService.delete(id);
+	}
+	
+}
