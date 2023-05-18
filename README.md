@@ -14,4 +14,5 @@ ddl-auto bisa diubah menjadi update jika dibutuhkan
 <br />
 <br />
 Jalankan : <b>mvn clean install</b> pada direktori yang ada pom.xml
+<br />
 untuk menjalankan app : <b>mvn spring-boot:run</b> pada direktory yang ada pom.xml setelah di clean install
